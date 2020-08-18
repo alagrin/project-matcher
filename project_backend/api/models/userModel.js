@@ -3,11 +3,14 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var UserSchema = new Schema({
-  name: {
+  firstName: String,
+  lastName: String,
+  password: String,
+  email: {
     type: String,
-    required: "Enter Username",
+    required: "Enter email",
   },
-  Created_date: {
+  created_date: {
     type: Date,
     default: Date.now,
   },
