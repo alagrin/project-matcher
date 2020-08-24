@@ -1,9 +1,8 @@
-"use strict";
-var mongoose = require("mongoose");
-var Schema = mongoose.Schema;
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
-var ProjectSchema = new Schema({
-  projectName: String,
+const Project = new Schema({
+  projectName: { type: String, required: true },
   createdDate: {
     type: Date,
     default: Date.now,
@@ -23,4 +22,4 @@ var ProjectSchema = new Schema({
   },
 });
 
-module.exports = mongoose.model("Projects", ProjectSchema);
+module.exports = mongoose.model("Project", Project);

@@ -1,20 +1,19 @@
-const MongoClient = require("mongodb").MongoClient;
+const mongoose = require('mongoose');
 const url = "mongodb://127.0.0.1:27017";
 
 const dbName = "project_matcher";
 let db;
 
-MongoClient.connect(
+mongoose.connect(
   url,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   },
-  (err, client) => {
+  (err) => {
     if (err) {
       return console.log(err);
     }
-    db = client.db(dbName);
     console.log(`Connected to MongoDb: ${url}`);
     console.log(`Database: ${dbName}`);
   }
@@ -23,11 +22,6 @@ MongoClient.connect(
 // async function main() {
 //   const uri =
 //     "mongodb+srv://alagrin:Gsana123!@pmcluster.q1rhy.mongodb.net/test?retryWrites=true&w=majority";
-
-//   const client = new MongoClient(uri, {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true,
-//   });
 
 //   try {
 //     // Connect to the MongoDB cluster
