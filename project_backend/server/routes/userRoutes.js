@@ -11,12 +11,40 @@ userRouter.get("/users", function (req, res) {
   });
 });
 
-// TODO get user by id but route / url is weird
+// get user by id
 userRouter.get("/:userId", function (req, res) {
- const userId = req.params.userId;
+  const userId = req.params.userId;
   User.findOne({ _id: userId }, function (err, result) {
-    if (err) res.send(err);
+    if (err) {
+      return res.send(err);
+    }
     res.json(result);
+  });
+});
+
+userRouter.put("/:userId", function (req, res) {
+  const userId = req.body.userId
+  User.findOneAndUpdate(
+    { _id: userId },
+    { $set: { firstName: req.body.firstName } }
+  ).exec(function (err, user) {
+    if (err) {
+      console.log(err);
+      res.status(500).send(err);
+    } else {
+      res.status(200).send({"message": "User updated successfully"});
+    }
+  });
+});
+
+userRouter.delete("/:userId", function (req, res) {
+  const userId = req.body.userId;
+  console.log(req.params.user);
+  User.deleteOne({ _id: userId }, function (err, user) {
+    if (err) {
+      return res.send(err);
+    }
+    res.json({ message: `User ${userId} deleted` });
   });
 });
 
@@ -31,10 +59,5 @@ userRouter.post("/create", function (req, res) {
     res.json(newUser);
   });
 });
-
-// userRouter.delete("/:userId", function (req, res) {
-//   let userId = req.body.email;
-//   user.deleteOne("_id = userId", )
-// })
 
 module.exports = { userRouter };

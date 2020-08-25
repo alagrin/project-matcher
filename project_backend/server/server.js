@@ -7,7 +7,7 @@ const app = express();
 const port = 4000;
 
 const url = "mongodb://127.0.0.1:27017/project_matcher";
-const router = express.Router();
+// const router = express.Router();
 
 mongoose.connect(
   url,
@@ -25,13 +25,16 @@ mongoose.connect(
   }
 );
 
-
-
 app.get("/api", (req, res) => {
-  res.send("Home sweet home test 🏚"); // TODO adjust later
+  res.send("Sweet api home test 🏚"); // TODO adjust later
+});
+
+app.get("/", (req, res) => {
+  res.send("Home sweet homepage test 🏚"); // TODO adjust later
 });
 
 app.use(require("cors")());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json()); // req for parsing of requests
 app.use("/user", userRouter); // routes for user actions
 
