@@ -1,4 +1,4 @@
-var express = require("express"),
+const express = require("express"),
   app = express(),
   port = process.env.PORT || 3000,
   bodyParser = require("body-parser");
@@ -26,6 +26,10 @@ MongoClient.connect(
 );
 
 app.get("/", (req, res) => {
+  res.send("Home sweet home test 🏚") // always responds with the string "TODO"
+});
+
+app.get("/users", (req, res) => {
   res.send("Home sweet home test 🏚") // always responds with the string "TODO"
 });
 

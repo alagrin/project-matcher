@@ -1,4 +1,5 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
+const user = require("../models/user");
 const url = "mongodb://127.0.0.1:27017";
 
 const dbName = "project_matcher";
@@ -14,6 +15,9 @@ mongoose.connect(
     if (err) {
       return console.log(err);
     }
+  // worked to create dbname and add the collection
+    mongoose.createConnection(url + "/" + dbName).createCollection("Users");
+
     console.log(`Connected to MongoDb: ${url}`);
     console.log(`Database: ${dbName}`);
   }

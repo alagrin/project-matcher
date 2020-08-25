@@ -9,7 +9,9 @@ function getUserRoutes() {
 
 // controller and utility functions here?
 
-async function getUsers(req, res) {}
+async function getUsers(req, res) {
+  
+}
 
 async function getUserById(req, res) {}
 
