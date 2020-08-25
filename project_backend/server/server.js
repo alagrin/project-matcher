@@ -7,7 +7,7 @@ const app = express();
 const port = 4000;
 
 const url = "mongodb://127.0.0.1:27017/project_matcher";
-let router = express.Router();
+const router = express.Router();
 
 mongoose.connect(
   url,
@@ -21,18 +21,19 @@ mongoose.connect(
     }
 
     mongoose.createConnection(url);
-
     console.log(`Connected to MongoDb: ${url}`);
   }
 );
 
-app.get("/", (req, res) => {
-  res.send("Home sweet home test 🏚"); // always responds with the string "TODO"
+
+
+app.get("/api", (req, res) => {
+  res.send("Home sweet home test 🏚"); // TODO adjust later
 });
 
 app.use(require("cors")());
-app.use(bodyParser.json());
-app.use("/user", userRouter);
+app.use(bodyParser.json()); // req for parsing of requests
+app.use("/user", userRouter); // routes for user actions
 
 app.listen(port);
 console.log("Project Matcher server started on: " + port);
