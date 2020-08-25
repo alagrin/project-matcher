@@ -1,40 +1,38 @@
-const express = require("express"),
-  app = express(),
-  port = process.env.PORT || 3000,
-  bodyParser = require("body-parser");
+const express = require("express");
+const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
+const { userRouter } = require("./routes/userRoutes");
 
-const MongoClient = require("mongodb").MongoClient;
-const url = "mongodb://127.0.0.1:27017";
+const app = express();
+const port = 4000;
 
-const dbName = "project_matcher";
-let db;
+const url = "mongodb://127.0.0.1:27017/project_matcher";
+let router = express.Router();
 
-MongoClient.connect(
+mongoose.connect(
   url,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   },
-  (err, client) => {
+  (err) => {
     if (err) {
       return console.log(err);
     }
-    db = client.db(dbName);
+
+    mongoose.createConnection(url);
+
     console.log(`Connected to MongoDb: ${url}`);
-    console.log(`Database: ${dbName}`);
   }
 );
 
 app.get("/", (req, res) => {
-  res.send("Home sweet home test 🏚") // always responds with the string "TODO"
-});
-
-app.get("/users", (req, res) => {
-  res.send("Home sweet home test 🏚") // always responds with the string "TODO"
+  res.send("Home sweet home test 🏚"); // always responds with the string "TODO"
 });
 
 app.use(require("cors")());
+app.use(bodyParser.json());
+app.use("/user", userRouter);
 
 app.listen(port);
-
 console.log("Project Matcher server started on: " + port);

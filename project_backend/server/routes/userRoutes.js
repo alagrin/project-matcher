@@ -1,18 +1,19 @@
-import express from "express";
+const express = require("express");
+const user = require("../models/user");
 
-function getUserRoutes() {
-  const router = express.Router();
-  router.get("/users", getUsers);
-  router.get("users/:userId", getUserById);
-  return router;
-}
+const userRouter = express.Router();
 
-// controller and utility functions here?
+userRouter.post("/create", function (req, res) {
+  user
+    .create({
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      email: req.body.email,
+      password: req.body.password,
+    })
+    .then((newUser) => {
+      res.json(newUser);
+    });
+});
 
-async function getUsers(req, res) {
-  
-}
-
-async function getUserById(req, res) {}
-
-export { getUserRoutes };
+module.exports = { userRouter };
