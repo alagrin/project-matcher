@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const { userRouter } = require("./routes/userRoutes");
+const { projectRouter } = require("./routes/projectRoutes");
 
 const app = express();
 const port = 4000;
@@ -26,7 +27,7 @@ mongoose.connect(
 );
 
 app.get("/api", (req, res) => {
-  res.send("Sweet api home test 🏚"); // TODO adjust later
+  res.send("Sweet api home test 🏚"); // TODO adjust later, api/user/users, etc.
 });
 
 app.get("/", (req, res) => {
@@ -37,6 +38,7 @@ app.use(require("cors")());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json()); // req for parsing of requests
 app.use("/user", userRouter); // routes for user actions
+app.use("/project", projectRouter);
 
 app.listen(port);
 console.log("Project Matcher server started on: " + port);
