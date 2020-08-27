@@ -27,34 +27,34 @@ class NavBar extends Component {
 
   render() {
     return (
-        <div>
-          <Navbar color="light" light expand="md">
-            <NavbarBrand href="/">Matchr</NavbarBrand>
-            <NavbarToggler onClick={this.handleToggle} />
-            <Collapse isOpen={this.state.isOpen} navbar>
-              <Nav className="mr-auto" navbar>
-                <NavItem>
-                  <NavLink href="/">Home</NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink href="/">Test</NavLink>
-                </NavItem>
-                <UncontrolledDropdown nav inNavbar>
-                  <DropdownToggle nav caret>
-                    Options
-                  </DropdownToggle>
-                  <DropdownMenu right>
-                    <DropdownItem>Option 1</DropdownItem>
-                    <DropdownItem>Option 2</DropdownItem>
-                    <DropdownItem divider />
-                    <DropdownItem>Separate Opt.</DropdownItem>
-                  </DropdownMenu>
-                </UncontrolledDropdown>
-              </Nav>
-              <NavbarText>Hello User!</NavbarText>
-            </Collapse>
-          </Navbar>
-        </div>
+      <div>
+        <Navbar color="light" light expand="md">
+          <NavbarBrand href="/">Matchr</NavbarBrand>
+          <NavbarToggler onClick={this.handleToggle} />
+          <Collapse isOpen={this.state.isOpen} navbar>
+            <Nav className="mr-auto" navbar>
+              <NavItem>
+                <NavLink href="/">Home</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="/projects">Test</NavLink>
+              </NavItem>
+              <UncontrolledDropdown nav inNavbar>
+                <DropdownToggle nav caret>
+                  Options
+                </DropdownToggle>
+                <DropdownMenu right>
+                  <DropdownItem>Option 1</DropdownItem>
+                  <DropdownItem>Option 2</DropdownItem>
+                  <DropdownItem divider />
+                  <DropdownItem>Separate Opt.</DropdownItem>
+                </DropdownMenu>
+              </UncontrolledDropdown>
+            </Nav>
+            <NavbarText>Hello User!</NavbarText>
+          </Collapse>
+        </Navbar>
+      </div>
     );
   }
 }
